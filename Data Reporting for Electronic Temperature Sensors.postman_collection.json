@@ -1,0 +1,2061 @@
+{
+	"info": {
+		"_postman_id": "c3ffa17c-d02c-4feb-9c30-23bade41e32e",
+		"name": "Data Reporting for Electronic Temperature Sensors",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11994871"
+	},
+	"item": [
+		{
+			"name": "Retrieve sensor read events by task",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/tasks/:taskId/log",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"tasks",
+						":taskId",
+						"log"
+					],
+					"query": [
+						{
+							"key": "startTime",
+							"value": "2022-09-12T08:00:00.006Z",
+							"description": "Date-time timestamp of records newer than the time provided",
+							"disabled": true
+						},
+						{
+							"key": "endTime",
+							"value": "2022-09-12T16:00:00.006Z",
+							"description": "Date-time timestamp of records not occurring before the time provided",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": "20",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "taskId",
+							"value": "{{taskID}}"
+						}
+					]
+				},
+				"description": "Retrieves *all* temperature records, alarms, upload times, and locations based on the `taskId` you provide. You can limit the events retrieved by a time period you dictate."
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"data\": {\n    \"type\": \"beacon\",\n    \"event\": {\n      \"timestamp\": 29815735.26632993,\n      \"deviceId\": \"bridge-id_or_phone-id\",\n      \"data\": {\n        \"format\": \"beacon\",\n        \"id\": \"sensormac\",\n        \"value\": \"ipsum voluptate mollit consectetur\",\n        \"rssi\": -51\n      },\n      \"id\": \"6359fcb8-96a0-461c-90b1-07dbb002c063\",\n      \"analytics\": {\n        \"recordedTimestamp\": 66102016.617639065,\n        \"resourceId\": \"bridge-id_or_phone-id\",\n        \"tenant\": \"my_tenant\",\n        \"timestamp\": 98749535.50769448,\n        \"meta\": \"{\\\"taskId\\\":\\\"067e2b5e-0f70-4010-8245-28361008cca4\\\"}\"\n      },\n      \"decode\": {\n        \"temperature\": {\n          \"alert\": true,\n          \"deviation\": 0.3,\n          \"format\": \"celsius\",\n          \"taskId\": \"task id\",\n          \"sample\": -2.06\n        }\n      }\n    }\n  }\n}"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"status\": \"deserunt voluptate\",\n  \"error\": \"et incididunt enim Lorem ea\",\n  \"cause\": [\n    {\n      \"message\": \"culpa dolore fugiat ex deserunt\"\n    },\n    {\n      \"message\": \"quis\"\n    }\n  ]\n}"
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"timestamp\": \"anim do proident sunt\",\n  \"path\": \"pariatur minim sunt aliquip\",\n  \"status\": 65994,\n  \"error\": \"Excepteur\",\n  \"message\": \"ut ex aliqua aute incididunt\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Retrieve sensor read events by task BAD TASK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"[]\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/tasks/:taskId/log",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"tasks",
+						":taskId",
+						"log"
+					],
+					"query": [
+						{
+							"key": "startTime",
+							"value": "2022-09-12T08:00:00.006Z",
+							"description": "Date-time timestamp of records newer than the time provided",
+							"disabled": true
+						},
+						{
+							"key": "endTime",
+							"value": "2022-09-12T16:00:00.006Z",
+							"description": "Date-time timestamp of records not occurring before the time provided",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "taskId",
+							"value": "1234"
+						}
+					]
+				},
+				"description": "Retrieves *all* temperature records, alarms, upload times, and locations based on the `taskId` you provide. You can limit the events retrieved by a time period you dictate."
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"data\": {\n    \"type\": \"beacon\",\n    \"event\": {\n      \"timestamp\": 29815735.26632993,\n      \"deviceId\": \"bridge-id_or_phone-id\",\n      \"data\": {\n        \"format\": \"beacon\",\n        \"id\": \"sensormac\",\n        \"value\": \"ipsum voluptate mollit consectetur\",\n        \"rssi\": -51\n      },\n      \"id\": \"6359fcb8-96a0-461c-90b1-07dbb002c063\",\n      \"analytics\": {\n        \"recordedTimestamp\": 66102016.617639065,\n        \"resourceId\": \"bridge-id_or_phone-id\",\n        \"tenant\": \"my_tenant\",\n        \"timestamp\": 98749535.50769448,\n        \"meta\": \"{\\\"taskId\\\":\\\"067e2b5e-0f70-4010-8245-28361008cca4\\\"}\"\n      },\n      \"decode\": {\n        \"temperature\": {\n          \"alert\": true,\n          \"deviation\": 0.3,\n          \"format\": \"celsius\",\n          \"taskId\": \"task id\",\n          \"sample\": -2.06\n        }\n      }\n    }\n  }\n}"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"status\": \"deserunt voluptate\",\n  \"error\": \"et incididunt enim Lorem ea\",\n  \"cause\": [\n    {\n      \"message\": \"culpa dolore fugiat ex deserunt\"\n    },\n    {\n      \"message\": \"quis\"\n    }\n  ]\n}"
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"timestamp\": \"anim do proident sunt\",\n  \"path\": \"pariatur minim sunt aliquip\",\n  \"status\": 65994,\n  \"error\": \"Excepteur\",\n  \"message\": \"ut ex aliqua aute incididunt\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Retrieve sensor read events by task TODAY",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/tasks/:taskId/log?startTime=2022-10-12T08:00:00.006Z&endTime=2022-11-08T16:00:00.006Z",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"tasks",
+						":taskId",
+						"log"
+					],
+					"query": [
+						{
+							"key": "startTime",
+							"value": "2022-10-12T08:00:00.006Z",
+							"description": "Date-time timestamp of records newer than the time provided"
+						},
+						{
+							"key": "endTime",
+							"value": "2022-11-08T16:00:00.006Z",
+							"description": "Date-time timestamp of records not occurring before the time provided"
+						}
+					],
+					"variable": [
+						{
+							"key": "taskId",
+							"value": "{{taskID}}",
+							"description": "(Required) The ID number of the task"
+						}
+					]
+				},
+				"description": "Retrieves *all* temperature records, alarms, upload times, and locations based on the `taskId` you provide. You can limit the events retrieved by a time period you dictate."
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"data\": {\n    \"type\": \"beacon\",\n    \"event\": {\n      \"timestamp\": 29815735.26632993,\n      \"deviceId\": \"bridge-id_or_phone-id\",\n      \"data\": {\n        \"format\": \"beacon\",\n        \"id\": \"sensormac\",\n        \"value\": \"ipsum voluptate mollit consectetur\",\n        \"rssi\": -51\n      },\n      \"id\": \"6359fcb8-96a0-461c-90b1-07dbb002c063\",\n      \"analytics\": {\n        \"recordedTimestamp\": 66102016.617639065,\n        \"resourceId\": \"bridge-id_or_phone-id\",\n        \"tenant\": \"my_tenant\",\n        \"timestamp\": 98749535.50769448,\n        \"meta\": \"{\\\"taskId\\\":\\\"067e2b5e-0f70-4010-8245-28361008cca4\\\"}\"\n      },\n      \"decode\": {\n        \"temperature\": {\n          \"alert\": true,\n          \"deviation\": 0.3,\n          \"format\": \"celsius\",\n          \"taskId\": \"task id\",\n          \"sample\": -2.06\n        }\n      }\n    }\n  }\n}"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"status\": \"deserunt voluptate\",\n  \"error\": \"et incididunt enim Lorem ea\",\n  \"cause\": [\n    {\n      \"message\": \"culpa dolore fugiat ex deserunt\"\n    },\n    {\n      \"message\": \"quis\"\n    }\n  ]\n}"
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"timestamp\": \"anim do proident sunt\",\n  \"path\": \"pariatur minim sunt aliquip\",\n  \"status\": 65994,\n  \"error\": \"Excepteur\",\n  \"message\": \"ut ex aliqua aute incididunt\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Retrieve sensor read events by task BAD KEY",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "apikey",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/tasks/:taskId/log",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"tasks",
+						":taskId",
+						"log"
+					],
+					"query": [
+						{
+							"key": "startTime",
+							"value": "2022-09-12T08:00:00.006Z",
+							"description": "Date-time timestamp of records newer than the time provided",
+							"disabled": true
+						},
+						{
+							"key": "endTime",
+							"value": "2022-09-12T16:00:00.006Z",
+							"description": "Date-time timestamp of records not occurring before the time provided",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "taskId",
+							"value": "{{taskID}}",
+							"description": "(Required) The ID number of the task"
+						}
+					]
+				},
+				"description": "Retrieves *all* temperature records, alarms, upload times, and locations based on the `taskId` you provide. You can limit the events retrieved by a time period you dictate."
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"data\": {\n    \"type\": \"beacon\",\n    \"event\": {\n      \"timestamp\": 29815735.26632993,\n      \"deviceId\": \"bridge-id_or_phone-id\",\n      \"data\": {\n        \"format\": \"beacon\",\n        \"id\": \"sensormac\",\n        \"value\": \"ipsum voluptate mollit consectetur\",\n        \"rssi\": -51\n      },\n      \"id\": \"6359fcb8-96a0-461c-90b1-07dbb002c063\",\n      \"analytics\": {\n        \"recordedTimestamp\": 66102016.617639065,\n        \"resourceId\": \"bridge-id_or_phone-id\",\n        \"tenant\": \"my_tenant\",\n        \"timestamp\": 98749535.50769448,\n        \"meta\": \"{\\\"taskId\\\":\\\"067e2b5e-0f70-4010-8245-28361008cca4\\\"}\"\n      },\n      \"decode\": {\n        \"temperature\": {\n          \"alert\": true,\n          \"deviation\": 0.3,\n          \"format\": \"celsius\",\n          \"taskId\": \"task id\",\n          \"sample\": -2.06\n        }\n      }\n    }\n  }\n}"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"status\": \"deserunt voluptate\",\n  \"error\": \"et incididunt enim Lorem ea\",\n  \"cause\": [\n    {\n      \"message\": \"culpa dolore fugiat ex deserunt\"\n    },\n    {\n      \"message\": \"quis\"\n    }\n  ]\n}"
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"timestamp\": \"anim do proident sunt\",\n  \"path\": \"pariatur minim sunt aliquip\",\n  \"status\": 65994,\n  \"error\": \"Excepteur\",\n  \"message\": \"ut ex aliqua aute incididunt\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Retrieve sensor read events by task GOOD KEY",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/tasks/:taskId/log",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"tasks",
+						":taskId",
+						"log"
+					],
+					"query": [
+						{
+							"key": "startTime",
+							"value": "2022-09-12T08:00:00.006Z",
+							"description": "Date-time timestamp of records newer than the time provided",
+							"disabled": true
+						},
+						{
+							"key": "endTime",
+							"value": "2022-09-12T16:00:00.006Z",
+							"description": "Date-time timestamp of records not occurring before the time provided",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "taskId",
+							"value": "{{taskID}}",
+							"description": "(Required) The ID number of the task"
+						}
+					]
+				},
+				"description": "Retrieves *all* temperature records, alarms, upload times, and locations based on the `taskId` you provide. You can limit the events retrieved by a time period you dictate."
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"data\": {\n    \"type\": \"beacon\",\n    \"event\": {\n      \"timestamp\": 29815735.26632993,\n      \"deviceId\": \"bridge-id_or_phone-id\",\n      \"data\": {\n        \"format\": \"beacon\",\n        \"id\": \"sensormac\",\n        \"value\": \"ipsum voluptate mollit consectetur\",\n        \"rssi\": -51\n      },\n      \"id\": \"6359fcb8-96a0-461c-90b1-07dbb002c063\",\n      \"analytics\": {\n        \"recordedTimestamp\": 66102016.617639065,\n        \"resourceId\": \"bridge-id_or_phone-id\",\n        \"tenant\": \"my_tenant\",\n        \"timestamp\": 98749535.50769448,\n        \"meta\": \"{\\\"taskId\\\":\\\"067e2b5e-0f70-4010-8245-28361008cca4\\\"}\"\n      },\n      \"decode\": {\n        \"temperature\": {\n          \"alert\": true,\n          \"deviation\": 0.3,\n          \"format\": \"celsius\",\n          \"taskId\": \"task id\",\n          \"sample\": -2.06\n        }\n      }\n    }\n  }\n}"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"status\": \"deserunt voluptate\",\n  \"error\": \"et incididunt enim Lorem ea\",\n  \"cause\": [\n    {\n      \"message\": \"culpa dolore fugiat ex deserunt\"\n    },\n    {\n      \"message\": \"quis\"\n    }\n  ]\n}"
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"timestamp\": \"anim do proident sunt\",\n  \"path\": \"pariatur minim sunt aliquip\",\n  \"status\": 65994,\n  \"error\": \"Excepteur\",\n  \"message\": \"ut ex aliqua aute incididunt\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Retrieve sensor read events by task PAGE 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"nextCursor\");\r",
+							"});\r",
+							"var resp = pm.response.json();\r",
+							"pm.environment.set(\"nextCursor\", resp.nextCursor);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/tasks/:taskId/log?startTime=2022-10-12T08:00:00.006Z&endTime=2022-11-08T16:00:00.006Z&limit=20",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"tasks",
+						":taskId",
+						"log"
+					],
+					"query": [
+						{
+							"key": "startTime",
+							"value": "2022-10-12T08:00:00.006Z",
+							"description": "Date-time timestamp of records newer than the time provided"
+						},
+						{
+							"key": "endTime",
+							"value": "2022-11-08T16:00:00.006Z",
+							"description": "Date-time timestamp of records not occurring before the time provided"
+						},
+						{
+							"key": "limit",
+							"value": "20"
+						}
+					],
+					"variable": [
+						{
+							"key": "taskId",
+							"value": "{{taskID}}"
+						}
+					]
+				},
+				"description": "Retrieves *all* temperature records, alarms, upload times, and locations based on the `taskId` you provide. You can limit the events retrieved by a time period you dictate."
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"data\": {\n    \"type\": \"beacon\",\n    \"event\": {\n      \"timestamp\": 29815735.26632993,\n      \"deviceId\": \"bridge-id_or_phone-id\",\n      \"data\": {\n        \"format\": \"beacon\",\n        \"id\": \"sensormac\",\n        \"value\": \"ipsum voluptate mollit consectetur\",\n        \"rssi\": -51\n      },\n      \"id\": \"6359fcb8-96a0-461c-90b1-07dbb002c063\",\n      \"analytics\": {\n        \"recordedTimestamp\": 66102016.617639065,\n        \"resourceId\": \"bridge-id_or_phone-id\",\n        \"tenant\": \"my_tenant\",\n        \"timestamp\": 98749535.50769448,\n        \"meta\": \"{\\\"taskId\\\":\\\"067e2b5e-0f70-4010-8245-28361008cca4\\\"}\"\n      },\n      \"decode\": {\n        \"temperature\": {\n          \"alert\": true,\n          \"deviation\": 0.3,\n          \"format\": \"celsius\",\n          \"taskId\": \"task id\",\n          \"sample\": -2.06\n        }\n      }\n    }\n  }\n}"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"status\": \"deserunt voluptate\",\n  \"error\": \"et incididunt enim Lorem ea\",\n  \"cause\": [\n    {\n      \"message\": \"culpa dolore fugiat ex deserunt\"\n    },\n    {\n      \"message\": \"quis\"\n    }\n  ]\n}"
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"timestamp\": \"anim do proident sunt\",\n  \"path\": \"pariatur minim sunt aliquip\",\n  \"status\": 65994,\n  \"error\": \"Excepteur\",\n  \"message\": \"ut ex aliqua aute incididunt\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Retrieve sensor read events by task PAGE 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"var resp = pm.response.json();\r",
+							"pm.environment.set(\"nextCursor\", resp.nextCursor);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/tasks/:taskId/log?startTime=2022-10-12T08:00:00.006Z&endTime=2022-11-08T16:00:00.006Z&limit=20&cursor={{nextCursor}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"tasks",
+						":taskId",
+						"log"
+					],
+					"query": [
+						{
+							"key": "startTime",
+							"value": "2022-10-12T08:00:00.006Z",
+							"description": "Date-time timestamp of records newer than the time provided"
+						},
+						{
+							"key": "endTime",
+							"value": "2022-11-08T16:00:00.006Z",
+							"description": "Date-time timestamp of records not occurring before the time provided"
+						},
+						{
+							"key": "limit",
+							"value": "20"
+						},
+						{
+							"key": "cursor",
+							"value": "{{nextCursor}}"
+						}
+					],
+					"variable": [
+						{
+							"key": "taskId",
+							"value": "{{taskID}}"
+						}
+					]
+				},
+				"description": "Retrieves *all* temperature records, alarms, upload times, and locations based on the `taskId` you provide. You can limit the events retrieved by a time period you dictate."
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"data\": {\n    \"type\": \"beacon\",\n    \"event\": {\n      \"timestamp\": 29815735.26632993,\n      \"deviceId\": \"bridge-id_or_phone-id\",\n      \"data\": {\n        \"format\": \"beacon\",\n        \"id\": \"sensormac\",\n        \"value\": \"ipsum voluptate mollit consectetur\",\n        \"rssi\": -51\n      },\n      \"id\": \"6359fcb8-96a0-461c-90b1-07dbb002c063\",\n      \"analytics\": {\n        \"recordedTimestamp\": 66102016.617639065,\n        \"resourceId\": \"bridge-id_or_phone-id\",\n        \"tenant\": \"my_tenant\",\n        \"timestamp\": 98749535.50769448,\n        \"meta\": \"{\\\"taskId\\\":\\\"067e2b5e-0f70-4010-8245-28361008cca4\\\"}\"\n      },\n      \"decode\": {\n        \"temperature\": {\n          \"alert\": true,\n          \"deviation\": 0.3,\n          \"format\": \"celsius\",\n          \"taskId\": \"task id\",\n          \"sample\": -2.06\n        }\n      }\n    }\n  }\n}"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"status\": \"deserunt voluptate\",\n  \"error\": \"et incididunt enim Lorem ea\",\n  \"cause\": [\n    {\n      \"message\": \"culpa dolore fugiat ex deserunt\"\n    },\n    {\n      \"message\": \"quis\"\n    }\n  ]\n}"
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"timestamp\": \"anim do proident sunt\",\n  \"path\": \"pariatur minim sunt aliquip\",\n  \"status\": 65994,\n  \"error\": \"Excepteur\",\n  \"message\": \"ut ex aliqua aute incididunt\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Retrieve sensor read events by task FARENHEIT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"farenheit\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/tasks/:taskId/log?format=f",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"tasks",
+						":taskId",
+						"log"
+					],
+					"query": [
+						{
+							"key": "startTime",
+							"value": "2022-09-12T08:00:00.006Z",
+							"description": "Date-time timestamp of records newer than the time provided",
+							"disabled": true
+						},
+						{
+							"key": "endTime",
+							"value": "2022-09-12T16:00:00.006Z",
+							"description": "Date-time timestamp of records not occurring before the time provided",
+							"disabled": true
+						},
+						{
+							"key": "format",
+							"value": "f"
+						}
+					],
+					"variable": [
+						{
+							"key": "taskId",
+							"value": "{{taskID}}"
+						}
+					]
+				},
+				"description": "Retrieves *all* temperature records, alarms, upload times, and locations based on the `taskId` you provide. You can limit the events retrieved by a time period you dictate."
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"data\": {\n    \"type\": \"beacon\",\n    \"event\": {\n      \"timestamp\": 29815735.26632993,\n      \"deviceId\": \"bridge-id_or_phone-id\",\n      \"data\": {\n        \"format\": \"beacon\",\n        \"id\": \"sensormac\",\n        \"value\": \"ipsum voluptate mollit consectetur\",\n        \"rssi\": -51\n      },\n      \"id\": \"6359fcb8-96a0-461c-90b1-07dbb002c063\",\n      \"analytics\": {\n        \"recordedTimestamp\": 66102016.617639065,\n        \"resourceId\": \"bridge-id_or_phone-id\",\n        \"tenant\": \"my_tenant\",\n        \"timestamp\": 98749535.50769448,\n        \"meta\": \"{\\\"taskId\\\":\\\"067e2b5e-0f70-4010-8245-28361008cca4\\\"}\"\n      },\n      \"decode\": {\n        \"temperature\": {\n          \"alert\": true,\n          \"deviation\": 0.3,\n          \"format\": \"celsius\",\n          \"taskId\": \"task id\",\n          \"sample\": -2.06\n        }\n      }\n    }\n  }\n}"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"status\": \"deserunt voluptate\",\n  \"error\": \"et incididunt enim Lorem ea\",\n  \"cause\": [\n    {\n      \"message\": \"culpa dolore fugiat ex deserunt\"\n    },\n    {\n      \"message\": \"quis\"\n    }\n  ]\n}"
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"timestamp\": \"anim do proident sunt\",\n  \"path\": \"pariatur minim sunt aliquip\",\n  \"status\": 65994,\n  \"error\": \"Excepteur\",\n  \"message\": \"ut ex aliqua aute incididunt\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Retrieve sensor read events by task CELCIUS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"celcius\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/tasks/:taskId/log?format=c",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"tasks",
+						":taskId",
+						"log"
+					],
+					"query": [
+						{
+							"key": "startTime",
+							"value": "2022-09-12T08:00:00.006Z",
+							"description": "Date-time timestamp of records newer than the time provided",
+							"disabled": true
+						},
+						{
+							"key": "endTime",
+							"value": "2022-09-12T16:00:00.006Z",
+							"description": "Date-time timestamp of records not occurring before the time provided",
+							"disabled": true
+						},
+						{
+							"key": "format",
+							"value": "c"
+						}
+					],
+					"variable": [
+						{
+							"key": "taskId",
+							"value": "{{taskID}}"
+						}
+					]
+				},
+				"description": "Retrieves *all* temperature records, alarms, upload times, and locations based on the `taskId` you provide. You can limit the events retrieved by a time period you dictate."
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"data\": {\n    \"type\": \"beacon\",\n    \"event\": {\n      \"timestamp\": 29815735.26632993,\n      \"deviceId\": \"bridge-id_or_phone-id\",\n      \"data\": {\n        \"format\": \"beacon\",\n        \"id\": \"sensormac\",\n        \"value\": \"ipsum voluptate mollit consectetur\",\n        \"rssi\": -51\n      },\n      \"id\": \"6359fcb8-96a0-461c-90b1-07dbb002c063\",\n      \"analytics\": {\n        \"recordedTimestamp\": 66102016.617639065,\n        \"resourceId\": \"bridge-id_or_phone-id\",\n        \"tenant\": \"my_tenant\",\n        \"timestamp\": 98749535.50769448,\n        \"meta\": \"{\\\"taskId\\\":\\\"067e2b5e-0f70-4010-8245-28361008cca4\\\"}\"\n      },\n      \"decode\": {\n        \"temperature\": {\n          \"alert\": true,\n          \"deviation\": 0.3,\n          \"format\": \"celsius\",\n          \"taskId\": \"task id\",\n          \"sample\": -2.06\n        }\n      }\n    }\n  }\n}"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"status\": \"deserunt voluptate\",\n  \"error\": \"et incididunt enim Lorem ea\",\n  \"cause\": [\n    {\n      \"message\": \"culpa dolore fugiat ex deserunt\"\n    },\n    {\n      \"message\": \"quis\"\n    }\n  ]\n}"
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/tasks/:taskId/sense-events?startTime=2022-09-12T08:00:00.006Z&endTime=2022-09-12T16:00:00.006Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tasks",
+								":taskId",
+								"sense-events"
+							],
+							"query": [
+								{
+									"key": "startTime",
+									"value": "2022-09-12T08:00:00.006Z"
+								},
+								{
+									"key": "endTime",
+									"value": "2022-09-12T16:00:00.006Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "6359fcb8-96a0-461c-90b1-07dbb002c063",
+									"description": "(Required) The ID number of the task"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"timestamp\": \"anim do proident sunt\",\n  \"path\": \"pariatur minim sunt aliquip\",\n  \"status\": 65994,\n  \"error\": \"Excepteur\",\n  \"message\": \"ut ex aliqua aute incididunt\"\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{c_client_id}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "apikey",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://api.zebra.com/v2/data/environmental",
+			"type": "string"
+		},
+		{
+			"key": "taskID",
+			"value": "1234",
+			"type": "string"
+		},
+		{
+			"key": "c_client_id",
+			"value": "1234",
+			"type": "string"
+		},
+		{
+			"key": "c_client_secret",
+			"value": "1234",
+			"type": "string"
+		}
+	]
+}

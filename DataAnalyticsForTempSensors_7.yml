@@ -1,0 +1,300 @@
+openapi: 3.0.0
+info:
+  title: Data Reporting for Electronic Temperature Sensors
+  version: "2.5.0"
+servers:
+  - url: "https://api.zebra.com/v2/data/environmental"
+    description: Production server
+  - url: "https://stage-api.zebra.com/v2/data/environmental"
+    description: Test server
+paths:
+  /tasks/{taskId}/log:
+    get:
+      summary: Retrieve sensor read events by task
+      tags:
+        - Analytics and Reporting for Temperature Sensors
+      operationId: Retrieve sensor read events by task
+      description: Retrieves temperature records, alarms, upload times, and locations based on the `taskId` you provide. You can limit the events retrieved by a time period you dictate. By defualt will return the most recent 500 log entries from the last month in decending timestamp order
+      parameters:
+        - schema:
+            type: string
+          name: taskId
+          in: path
+          required: true
+          description: The ID number of the task
+        - schema:
+            type: string
+          in: query
+          name: startTime
+          description: "Date-time timestamp of records newer than the time provided in Zulu format"
+          example: "2022-11-01T08:00:00.006Z"
+        - schema:
+            type: string
+          in: query
+          name: endTime
+          description: "Date-time timestamp of records not occurring before the time provided in Zulu format. Maximum range must not be more tham 30 days."
+          example: "2022-11-08T16:00:00.006Z"
+        - schema:
+            type: string
+          in: query
+          name: limit
+          description: "Maximum number of records to return. Default is 500. Use the cursor to get additional pages of records"
+          example: "100"
+        - schema:
+            type: string
+          in: query
+          name: cursor
+          description: "Enter the 'nextCursor' from the previous page.  A guid index for the next page of events based on the previous limit. "
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/data-capture"
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/unauthorized"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/notFound"
+components:
+  securitySchemes:
+    #bearerAuth:
+    #  type: http
+    #  scheme: bearer
+    #  description: Access token
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: apikey
+  schemas:
+    data-capture:
+      title: sensorEvents
+      type: object
+      description: "Represents Savanna sensor event analytics data (RFID Read, BLE Beacon, or Barcode Scan)."
+      x-examples:
+        example-1:
+          "results": [
+          {
+            "type": "beacon",
+            "event":
+              {
+                "id": "8eb59091-93d1-44bb-8e34-ec8ce3d22da9",
+                "timestamp": "1633359112806",
+                "deviceID": "bridge-id_or_phone-id",
+                "data":
+                  {
+                    "format": "beacon",
+                    "id": "sensormac",
+                    "rssi": -25,
+                    "value": "10.2",
+                  },
+              },
+            "analytics":
+              {
+                "tenant": "sean-tenant",
+                "recorded_timestamp": "1633359112831",
+                "resourceId": "sensormac",
+                "timestamp": "1633359112806",
+                "location": { "lat": 30.267153, "lon": -97.74306 },
+                "meta": { "taskID": "task-id-from-envirovue" },
+              },
+            "decode":
+              {
+                "temperature":
+                  {
+                    "sample": 10.2,
+                    "taskID": "task-id-from-envirovue",
+                    "alert": true,
+                    "deviation": -1,
+                    "format": "celsius",
+                  },
+              },
+          }]
+      properties:
+        results:
+          title: results
+          description: "Data in storage"
+          type: array
+          items:
+            $ref: '#/components/schemas/log-event'
+    log-event:
+      title: event log entry
+      type: object
+      properties:
+        type:
+          title: eventType
+          type: string
+          example: "beacon"
+        event:
+          title: sensorEvent
+          type: object
+          description: "Represents an edge sensor event (RFID Read, BLE Beacon, Barcode Scan, or Temperature Event Set)."
+          required:
+            - timestamp
+            - deviceId
+            - data
+          properties:
+            id:
+              type: string
+              format: uuid
+              example: 6359fcb8-96a0-461c-90b1-07dbb002c063
+              description: The unique identifier for the event (GUID)
+            timestamp:
+              type: number
+              description: The date/time the event occurred.
+              example: "1633359112806"
+            deviceId:
+              type: string
+              description: The device ID of the sensor
+              example: bridge-id_or_phone-id
+            data:
+              type: object
+              properties:
+                format:
+                  type: string
+                  enum:
+                    - temp_tag
+                    - epc
+                    - iso
+                    - beacon
+                  example: beacon
+                  description: "The format of the id data (EPC, ISO, Beacon, or tag)"
+                id:
+                  type: string
+                  description: "The Data of the read (in hex), beacon ID, or tag ID"
+                  example: sensormac
+                value:
+                  type: string
+                  description: The temperature value
+                  example: -2.06
+                rssi:
+                  type: number
+                  description: "strength of the sensor signal to the reader device"
+                  example: -51
+            analytics:
+              type: object
+              properties:
+                recordedTimestamp:
+                  type: number
+                  description: timestamp of when the data is recieved into the cloud storage.
+                  example: "1633359112806"
+                resourceId:
+                  type: string
+                  description: The device ID of the sensor
+                  example: bridge-id_or_phone-id
+                tenant:
+                  type: string
+                  title: tenant
+                  example: "my_tenant"
+                timestamp:
+                  type: number
+                  description: The date/time the event occurred.
+                  example: "1633359112806"
+                meta:
+                  type: string
+                  description: extra information and notes about the event
+                  example: "{\"taskId\":\"067e2b5e-0f70-4010-8245-28361008cca4\"}"
+            decode:
+              type: object
+              properties:
+                temperature:
+                  type: object
+                  properties:
+                    alert:
+                      type: boolean
+                      example: true
+                      description: does this task have an alarm
+                    deviation:
+                      type: number
+                      example: 0.3
+                      description: how far outside the task temperature range is the current reading
+                    format:
+                      type: string
+                      example: celsius
+                    taskId:
+                      type: string
+                      example: "task id"
+                    sample:
+                      type: number
+                      example: -2.06
+    data-response:
+      title: sensorAnalytics
+      type: object
+      description: "Represents Savanna sensor event analytics data (RFID Read, BLE Beacon, or Barcode Scan)."
+      x-examples:
+        example-1:
+          {
+            "analytics":
+              {
+                "temperature":
+                  [
+                    {
+                      "sensorId": "string",
+                      "min": "float",
+                      "max": "float",
+                      "mean": "float",
+                      "mkt": "float",
+                    },
+                  ],
+              },
+          }
+      properties:
+        analytics:
+          type: object
+          properties:
+            temperature:
+              type: array
+              items:
+                type: object
+                properties:
+                  sensorId:
+                    type: string
+                  min:
+                    type: number
+                  max:
+                    type: number
+                  mean:
+                    type: number
+                  mkt:
+                    type: number
+    unauthorized:
+      title: unauthorized
+      type: object
+      properties:
+        code:
+          type: string
+          example: "401"
+        message:
+          type: string
+          example: "Not Authorized"
+        info:
+          type: string
+          example: "Authenticated user does not have permission to access this resource"
+    notFound:
+      title: notFound
+      type: object
+      properties:
+        code:
+          type: string
+          example: "404"
+        message:
+          type: string
+          example: "Item not found"
+        info:
+          type: string
+          example: "User may have entered the wrong resource id or does not have permission to access"
+security:
+  #- bearerAuth: []
+  - ApiKeyAuth: []
