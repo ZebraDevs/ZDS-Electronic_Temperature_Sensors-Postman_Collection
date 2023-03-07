@@ -1,0 +1,1227 @@
+{
+	"info": {
+		"_postman_id": "22cbc7d5-c45d-4596-968e-bf470eb6e583",
+		"name": "Event Subscription for Electronic Temperature Sensors",
+		"description": "## NOTE\nSee the [Developer Guide](https://developer.zebra.com/content/data-reporting-electronic-temperature-sensors-developer-guide) for information on what is output in the webhook.\n\n## Prerequisites\n\nYou will need:\n\n\n1. **Your `tenant`** is the same as your tenant account number. Visit the _**[Tenant Service API](https://developer.zebra.com/apis/review-savanna-tenant-service)**_ on the [Zebra Developer Portal](https://developer.zebra.com/) to retrieve your `tenant` if you don't already have it available.<br/> **Examples**:\n\n- If you _**don't**_ have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`\n\n- If you _**do**_ have an organizational account with Zebra your `tenant` should look similar to one of these two formats:\n\n  + `75423`\n\n  + `zebra`.\n\n2. **A valid `Bearer token`** ***or*** a valid `API Key`.\nYou can generate a `Bearer token` by sending your `client_id` and `client_secret` in a `GET` request to Zebra as in this example.\n  ```json\n\n    curl --location 'https://api.zebra.com/v2/oauth/token/access' \\--header 'client_id: {{your clientId}}' \\--header 'client_secret: {{your client secret}}'\n        \n  ```\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20529766"
+	},
+	"item": [
+		{
+			"name": "subscription",
+			"item": [
+				{
+					"name": "{subscriptionId}",
+					"item": [
+						{
+							"name": "Stop a subscription",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+										"key": "tenant",
+										"value": ""
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/subscription/:subscriptionId/stop",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"subscription",
+										":subscriptionId",
+										"stop"
+									],
+									"variable": [
+										{
+											"key": "subscriptionId",
+											"value": "aute laboris ex proident",
+											"description": "REQUIRED: Supply the `subscriptionId` of the webhook subscription you want to stop. Example: `B5JD07WPJ3BDVXRR`. You can retrieve all your `subscriptionId`(s) using `GET` `/subscription`."
+										}
+									]
+								},
+								"description": "Stops sending notifications for an environmental sensor webhook subscription"
+							},
+							"response": [
+								{
+									"name": "200 OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											},
+											{
+												"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+												"key": "tenant",
+												"value": ""
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/subscription/:subscriptionId/stop",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"subscription",
+												":subscriptionId",
+												"stop"
+											],
+											"variable": [
+												{
+													"key": "subscriptionId",
+													"value": "",
+													"description": "REQUIRED: Supply the `subscriptionId` of the webhook subscription you want to stop. Example: `B5JD07WPJ3BDVXRR`. You can retrieve all your `subscriptionId`(s) using `GET` `/subscription`."
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{}"
+								},
+								{
+									"name": "400 Bad Request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											},
+											{
+												"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+												"key": "tenant",
+												"value": ""
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/subscription/:subscriptionId/stop",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"subscription",
+												":subscriptionId",
+												"stop"
+											],
+											"variable": [
+												{
+													"key": "subscriptionId",
+													"value": "",
+													"description": "REQUIRED: Supply the `subscriptionId` of the webhook subscription you want to stop. Example: `B5JD07WPJ3BDVXRR`. You can retrieve all your `subscriptionId`(s) using `GET` `/subscription`."
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"errorResponse\": {\n    \"code\": \"400\",\n    \"message\": \"Bad Request\",\n    \"info\": \"The server cannot process your request\"\n  }\n}"
+								},
+								{
+									"name": "401 Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											},
+											{
+												"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+												"key": "tenant",
+												"value": ""
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/subscription/:subscriptionId/stop",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"subscription",
+												":subscriptionId",
+												"stop"
+											],
+											"variable": [
+												{
+													"key": "subscriptionId",
+													"value": "",
+													"description": "REQUIRED: Supply the `subscriptionId` of the webhook subscription you want to stop. Example: `B5JD07WPJ3BDVXRR`. You can retrieve all your `subscriptionId`(s) using `GET` `/subscription`."
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"errorResponse\": {\n    \"code\": \"401\",\n    \"message\": \"Unauthorized\",\n    \"info\": \"Invalid Access Token\"\n  }\n}"
+								},
+								{
+									"name": "403 Forbidden",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											},
+											{
+												"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+												"key": "tenant",
+												"value": ""
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/subscription/:subscriptionId/stop",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"subscription",
+												":subscriptionId",
+												"stop"
+											],
+											"variable": [
+												{
+													"key": "subscriptionId",
+													"value": "",
+													"description": "REQUIRED: Supply the `subscriptionId` of the webhook subscription you want to stop. Example: `B5JD07WPJ3BDVXRR`. You can retrieve all your `subscriptionId`(s) using `GET` `/subscription`."
+												}
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"errorResponse\": {\n    \"code\": \"403\",\n    \"message\": \"Forbidden\",\n    \"info\": \"You do not have access to this tenant\"\n  }\n}"
+								},
+								{
+									"name": "409 Conflict",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											},
+											{
+												"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+												"key": "tenant",
+												"value": ""
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/subscription/:subscriptionId/stop",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"subscription",
+												":subscriptionId",
+												"stop"
+											],
+											"variable": [
+												{
+													"key": "subscriptionId",
+													"value": "",
+													"description": "REQUIRED: Supply the `subscriptionId` of the webhook subscription you want to stop. Example: `B5JD07WPJ3BDVXRR`. You can retrieve all your `subscriptionId`(s) using `GET` `/subscription`."
+												}
+											]
+										}
+									},
+									"status": "Conflict",
+									"code": 409,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"errorResponse\": {\n    \"code\": \"409\",\n    \"message\": \"Conflict\",\n    \"info\": \"Your request is incompatible with a previous request.\"\n  }\n}"
+								}
+							]
+						},
+						{
+							"name": "Start a subscription",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) Your `tenant`. See the _[Tenant Service API](https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`.<br/><br/>**Examples**:\n\n- If you _**don't**_ have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`\n\n- If you _**do**_ have an organizational account with Zebra your `tenant` should look like one of these two:<br/>\n\n  - `75423`\n\n  - `zebra`\n",
+										"key": "tenant",
+										"value": "aute laboris ex proident"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/subscription/:subscriptionId/start",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"subscription",
+										":subscriptionId",
+										"start"
+									],
+									"variable": [
+										{
+											"key": "subscriptionId",
+											"value": "aute laboris ex proident",
+											"description": "(Required) Supply the `subscriptionId` of the webhook subscription you want to start. **Example:** `B5JD07WPJ3BDVXRR`<br/><br/>You can retrieve all your `subscriptionId`(s) using `GET` `/subscription` above.\n"
+										}
+									]
+								},
+								"description": "Starts sending notifications for an environmental sensor webhook subscription"
+							},
+							"response": [
+								{
+									"name": "200 OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											},
+											{
+												"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+												"key": "tenant",
+												"value": ""
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/subscription/:subscriptionId/start",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"subscription",
+												":subscriptionId",
+												"start"
+											],
+											"variable": [
+												{
+													"key": "subscriptionId",
+													"value": "",
+													"description": "REQUIRED: Supply the `subscriptionId` of the webhook subscription you want to stop. Example: `B5JD07WPJ3BDVXRR`. You can retrieve all your `subscriptionId`(s) using `GET` `/subscription`."
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{}"
+								},
+								{
+									"name": "400 Bad Request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											},
+											{
+												"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+												"key": "tenant",
+												"value": ""
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/subscription/:subscriptionId/start",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"subscription",
+												":subscriptionId",
+												"start"
+											],
+											"variable": [
+												{
+													"key": "subscriptionId",
+													"value": "",
+													"description": "REQUIRED: Supply the `subscriptionId` of the webhook subscription you want to stop. Example: `B5JD07WPJ3BDVXRR`. You can retrieve all your `subscriptionId`(s) using `GET` `/subscription`."
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"errorResponse\": {\n    \"code\": \"400\",\n    \"message\": \"Bad Request\",\n    \"info\": \"The server cannot process your request\"\n  }\n}"
+								},
+								{
+									"name": "401 Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											},
+											{
+												"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+												"key": "tenant",
+												"value": ""
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/subscription/:subscriptionId/start",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"subscription",
+												":subscriptionId",
+												"start"
+											],
+											"variable": [
+												{
+													"key": "subscriptionId",
+													"value": "",
+													"description": "REQUIRED: Supply the `subscriptionId` of the webhook subscription you want to stop. Example: `B5JD07WPJ3BDVXRR`. You can retrieve all your `subscriptionId`(s) using `GET` `/subscription`."
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"errorResponse\": {\n    \"code\": \"401\",\n    \"message\": \"Unauthorized\",\n    \"info\": \"Invalid Access Token\"\n  }\n}"
+								},
+								{
+									"name": "403 Forbidden",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											},
+											{
+												"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+												"key": "tenant",
+												"value": ""
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/subscription/:subscriptionId/start",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"subscription",
+												":subscriptionId",
+												"start"
+											],
+											"variable": [
+												{
+													"key": "subscriptionId",
+													"value": "",
+													"description": "REQUIRED: Supply the `subscriptionId` of the webhook subscription you want to stop. Example: `B5JD07WPJ3BDVXRR`. You can retrieve all your `subscriptionId`(s) using `GET` `/subscription`."
+												}
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"errorResponse\": {\n    \"code\": \"403\",\n    \"message\": \"Forbidden\",\n    \"info\": \"You do not have access to this tenant\"\n  }\n}"
+								},
+								{
+									"name": "409 Conflict",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											},
+											{
+												"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+												"key": "tenant",
+												"value": ""
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/subscription/:subscriptionId/start",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"subscription",
+												":subscriptionId",
+												"start"
+											],
+											"variable": [
+												{
+													"key": "subscriptionId",
+													"value": "",
+													"description": "REQUIRED: Supply the `subscriptionId` of the webhook subscription you want to stop. Example: `B5JD07WPJ3BDVXRR`. You can retrieve all your `subscriptionId`(s) using `GET` `/subscription`."
+												}
+											]
+										}
+									},
+									"status": "Conflict",
+									"code": 409,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"errorResponse\": {\n    \"code\": \"409\",\n    \"message\": \"Conflict\",\n    \"info\": \"Your request is incompatible with a previous request.\"\n  }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Create and start a webhook subscription",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+								"key": "tenant",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"webhookUrl\": \"<string>\",\n  \"taskIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"epcis\": false,\n  \"headers\": \"<string>\",\n  \"name\": \"<string>\",\n  \"webhookVerb\": \"POST\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/subscription",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"subscription"
+							]
+						},
+						"description": "Creates and starts a webhook subscription"
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									},
+									{
+										"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+										"key": "tenant",
+										"value": ""
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/subscription",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"subscription"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"headers\": {\n    \"apikey\": \"abc12345\",\n    \"tenant\": \"12345abc\"\n  },\n  \"taskIds\": [\n    \"449d226f3a1a4ad48e5c552831aa9334\",\n    \"629427d184744093a5dd3cd6b19c96b1\"\n  ],\n  \"epcis\": false,\n  \"name\": \"The name of my new webhook subscription\",\n  \"webhookUrl\": \"https://hooks.myorganization.com/services/hooks/myendpoint\",\n  \"webhookVerb\": \"POST\"\n}"
+						},
+						{
+							"name": "400 Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									},
+									{
+										"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+										"key": "tenant",
+										"value": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"webhookUrl\": \"<string>\",\n  \"taskIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"epcis\": false,\n  \"headers\": \"<string>\",\n  \"name\": \"<string>\",\n  \"webhookVerb\": \"POST\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/subscription",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"subscription"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"errorResponse\": {\n    \"code\": \"400\",\n    \"message\": \"Bad Request\",\n    \"info\": \"The server cannot process your request\"\n  }\n}"
+						},
+						{
+							"name": "401 Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									},
+									{
+										"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+										"key": "tenant",
+										"value": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"webhookUrl\": \"<string>\",\n  \"taskIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"epcis\": false,\n  \"headers\": \"<string>\",\n  \"name\": \"<string>\",\n  \"webhookVerb\": \"POST\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/subscription",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"subscription"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"errorResponse\": {\n    \"code\": \"401\",\n    \"message\": \"Unauthorized\",\n    \"info\": \"Invalid Access Token\"\n  }\n}"
+						},
+						{
+							"name": "403 Forbidden",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									},
+									{
+										"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+										"key": "tenant",
+										"value": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"webhookUrl\": \"<string>\",\n  \"taskIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"epcis\": false,\n  \"headers\": \"<string>\",\n  \"name\": \"<string>\",\n  \"webhookVerb\": \"POST\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/subscription",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"subscription"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"errorResponse\": {\n    \"code\": \"403\",\n    \"message\": \"Forbidden\",\n    \"info\": \"You do not have access to this tenant\"\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create and start a webhook subscription for EPCIS",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+								"key": "tenant",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"webhookUrl\": \"<string>\",\n  \"taskIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"epcis\": true,\n  \"headers\": \"<string>\",\n  \"name\": \"<string>\",\n  \"webhookVerb\": \"POST\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/subscription",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"subscription"
+							]
+						},
+						"description": "Creates and starts a webhook subscription"
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									},
+									{
+										"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+										"key": "tenant",
+										"value": ""
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/subscription",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"subscription"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"headers\": {\n    \"apikey\": \"abc12345\",\n    \"tenant\": \"12345abc\"\n  },\n  \"taskIds\": [\n    \"449d226f3a1a4ad48e5c552831aa9334\",\n    \"629427d184744093a5dd3cd6b19c96b1\"\n  ],\n  \"epcis\": true,\n  \"name\": \"The name of my new webhook subscription\",\n  \"webhookUrl\": \"https://hooks.myorganization.com/services/hooks/myendpoint\",\n  \"webhookVerb\": \"POST\"\n}"
+						},
+						{
+							"name": "400 Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									},
+									{
+										"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+										"key": "tenant",
+										"value": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"webhookUrl\": \"<string>\",\n  \"taskIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"epcis\": true,\n  \"headers\": \"<string>\",\n  \"name\": \"<string>\",\n  \"webhookVerb\": \"POST\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/subscription",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"subscription"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"errorResponse\": {\n    \"code\": \"400\",\n    \"message\": \"Bad Request\",\n    \"info\": \"The server cannot process your request\"\n  }\n}"
+						},
+						{
+							"name": "401 Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									},
+									{
+										"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+										"key": "tenant",
+										"value": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"webhookUrl\": \"<string>\",\n  \"taskIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"epcis\": true,\n  \"headers\": \"<string>\",\n  \"name\": \"<string>\",\n  \"webhookVerb\": \"POST\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/subscription",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"subscription"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"errorResponse\": {\n    \"code\": \"401\",\n    \"message\": \"Unauthorized\",\n    \"info\": \"Invalid Access Token\"\n  }\n}"
+						},
+						{
+							"name": "403 Forbidden",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									},
+									{
+										"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+										"key": "tenant",
+										"value": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"webhookUrl\": \"<string>\",\n  \"taskIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"epcis\": true,\n  \"headers\": \"<string>\",\n  \"name\": \"<string>\",\n  \"webhookVerb\": \"POST\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/subscription",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"subscription"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"errorResponse\": {\n    \"code\": \"403\",\n    \"message\": \"Forbidden\",\n    \"info\": \"You do not have access to this tenant\"\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "Retrieve all subscriptions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+								"key": "tenant",
+								"value": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/subscription",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"subscription"
+							]
+						},
+						"description": "Retrieves all environmental sensor webhook subscriptions"
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									},
+									{
+										"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+										"key": "tenant",
+										"value": ""
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/subscription",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"subscription"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"subscriptions\": [\n    {\n      \"id\": \"JSNR794PFLK6AXRP\",\n      \"deviceScope\": \"SCOVILLE\",\n      \"name\": \"My webhook subscription\",\n      \"changeFields\": [\n        \"webhookTrigger\"\n      ],\n      \"deviceIdentifiers\": [\n        \"085d4f08-7f39-43cd-8c01-a9ce017a58c0\"\n      ],\n      \"epcis\": false,\n      \"webhookUrl\": \"https://webhook.site/6c41a68d-9d5c-47a1-9920-87d420e6d0ad\",\n      \"webhookVerb\": \"POST\",\n      \"rawData\": [\n        \"epcisEventData\"\n      ]\n    },\n    {\n      \"id\": \"L9YAB9SW5ZE857T6\",\n      \"deviceScope\": \"SCOVILLE\",\n      \"name\": \"My alerts subscription\",\n      \"changeFields\": [\n        \"webhookTrigger\"\n      ],\n      \"deviceIdentifiers\": [\n        \"4515ab2e-cea4-43b8-8144-84f5d136ebc6\"\n      ],\n      \"epcis\": true,\n      \"webhookUrl\": \"https://webhook.site/4cd8c3d0-657f-4c7a-a967-fc18c9e3c058\",\n      \"webhookVerb\": \"POST\"\n    },\n    {\n      \"id\": \"XYXNVRDTFGIUG1ZA\",\n      \"deviceScope\": \"SCOVILLE\",\n      \"name\": \"Test alerts\",\n      \"changeFields\": [\n        \"webhookTrigger\"\n      ],\n      \"epcis\": true,\n      \"webhookUrl\": \"https://webhook.site/f550af3e-712d-4f43-ada6-6a1a34775cfd\",\n      \"webhookVerb\": \"POST\",\n      \"rawData\": [\n        \"epcisEventData\"\n      ]\n    }\n  ]\n}"
+						},
+						{
+							"name": "400 Bad Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									},
+									{
+										"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+										"key": "tenant",
+										"value": ""
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/subscription",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"subscription"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"errorResponse\": {\n    \"code\": \"400\",\n    \"message\": \"Bad Request\",\n    \"info\": \"The server cannot process your request\"\n  }\n}"
+						},
+						{
+							"name": "401 Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									},
+									{
+										"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+										"key": "tenant",
+										"value": ""
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/subscription",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"subscription"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"errorResponse\": {\n    \"code\": \"401\",\n    \"message\": \"Unauthorized\",\n    \"info\": \"Invalid Access Token\"\n  }\n}"
+						},
+						{
+							"name": "403 Forbidden",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									},
+									{
+										"description": "REQUIRED: Your `tenant`. See the Tenant Service API at https://developer.zebra.com/apis/review-savanna-tenant-service)_ to get your `tenant`. If you do not have an organization account with Zebra your `tenant` should look like this `2e18f99ae1644282a7ead607afb7367d`. If you do have an organizational account with Zebra your `tenant` should look like one of these two: `75423` or `zebra`",
+										"key": "tenant",
+										"value": ""
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/subscription",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"subscription"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"errorResponse\": {\n    \"code\": \"403\",\n    \"message\": \"Forbidden\",\n    \"info\": \"You do not have access to this tenant\"\n  }\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{bearerToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://api.zebra.com/v2/devices/environmental-sensors/event",
+			"type": "string"
+		}
+	]
+}
